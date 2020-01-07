@@ -15,7 +15,7 @@ data = np.genfromtxt('data/adult.data', delimiter=', ', dtype=str)
 feature_names = ["Age", "Workclass", "fnlwgt", "Education", "Education-Num", "Marital Status","Occupation", "Relationship", "Race", "Sex", "Capital Gain", "Capital Loss","Hours per week", "Country"]
 
 labels = data[:,14]
-le= sklearn.preprocessing.LabelEncoder()
+le = sklearn.preprocessing.LabelEncoder()
 le.fit(labels)
 labels = le.transform(labels)
 class_names = le.classes_
