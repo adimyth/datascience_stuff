@@ -1,26 +1,28 @@
 from app import decode_sequence
-import config
+from configs import config
+import requests
 from sanic import Sanic
 from sanic import response
 from tensorflow.keras.models import load_model
 
 app = Sanic(__name__)
-url = config.url
+url = config["url"]
 print("Loading trained models....")
-model = load_model(config.model_path)
-encoder = load_model(config.encoder_path)
-decoder = load_model(config.decoder_path)
+model = load_model(config["model_path"])
+encoder = load_model(config["encoder_path"])
+decoder = load_model(config["decoder_path"])
 
 
 @app.route("/translate", methods=["POST"])
 async def translate_seq(request):
-    english_seq = request["input_sentence"]
+    data = request.json
+    english_seq = data["input_sentence"]
     print(f"Input English Sentence: {english_seq}")
     spanish_seq = decode_sequence(model, encoder, decoder, english_seq)
-    print(f"Predicted Spanish Sentence: {spanish_seq}")
+    print(f"Predicted Spanish Sentence: {spanish_seq[:-4]}")
     act_spa_seq = get_spanish_translation(english_seq)
     print(f"Actual Spanish Sentence: {act_spa_seq}")
-    spa_to_eng = get_english_translation(spanish_seq)
+    spa_to_eng = get_english_translation(spanish_seq[:-4])
     print(f"Predicted Spanish to English Sentence: {spa_to_eng}")
     return response.json({"english_seq": english_seq, 
         "spanish_seq": spanish_seq, 
