@@ -2,23 +2,23 @@
 Data Science stuff that I find interesting are here.
 
 ## Machine Learning
-[BatchNorm](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/BatchNorm.ipynb)
-[PCA](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/DimensionalityReduction.ipynb)
-[SVD](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/SingularValueDecomposition.ipynb)
-[WhiteDistance](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/WhiteDistance.ipynb) - Metric to calculate similarity between texts
+* [BatchNorm](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/BatchNorm.ipynb)
+* [PCA](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/DimensionalityReduction.ipynb)
+* [SVD](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/SingularValueDecomposition.ipynb)
+* [WhiteDistance](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/WhiteDistance.ipynb) - Metric to calculate similarity between texts
 
 ## Model Interpretation
-[LIME](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/lime_multiclass.py)
-[Occlusion](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/occlusion.ipynb)
-[CAM](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/cam.ipynb)
-[Grad CAM](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/grad_cam.ipynb)
+* [LIME](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/lime_multiclass.py)
+* [Occlusion](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/occlusion.ipynb)
+* [CAM](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/cam.ipynb)
+* [Grad CAM](https://github.com/adimyth/datascience_stuff/blob/master/model_interpretation/grad_cam.ipynb)
 
 ## Neural Arithmetic Logic Unit (NALU)
 
 ## NLP
-[TextGeneration](https://github.com/adimyth/datascience_stuff/blob/master/nlp/TextGeneration.ipynb) - Copy of Karpathy's work really
-[Seq2Seq](https://github.com/adimyth/datascience_stuff/blob/master/nlp/Seq2Seq.ipynb) - Notebook for a word based Encoder-Decoder Seq2Seq network for English to Spanish translation
-[Attention](https://github.com/adimyth/datascience_stuff/blob/master/nlp/LanguageModelling.ipynb) - An extension of previous Seq2Seq work which uses `attention` mechanism for english to spanish translation
+* [TextGeneration](https://github.com/adimyth/datascience_stuff/blob/master/nlp/TextGeneration.ipynb) - Copy of Karpathy's work really
+* [Seq2Seq](https://github.com/adimyth/datascience_stuff/blob/master/nlp/Seq2Seq.ipynb) - Notebook for a word based Encoder-Decoder Seq2Seq network for English to Spanish translation
+* [Attention](https://github.com/adimyth/datascience_stuff/blob/master/nlp/LanguageModelling.ipynb) - An extension of previous Seq2Seq work which uses `attention` mechanism for english to spanish translation
 
 ## Optimization
 [Differential Evolution](https://github.com/adimyth/datascience_stuff/blob/master/optimization/DifferentialEvolution.ipynb)
