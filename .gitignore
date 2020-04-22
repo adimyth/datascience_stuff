@@ -3,7 +3,7 @@ translate_app/models/english_to_spanish_attention_nmt.zip
 models/english_to_spanish_nmt.h5.zip
 models/english_to_spanish_nmt.h5
 models/english_to_spanish_nmt.h5
-
+models/english_to_spanish_attention_nmt.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
