@@ -2,12 +2,15 @@ import requests
 
 url ="http://localhost:5000/translate"
 
-sentences = ["What did you decide?",
-            "It's raining outside",
-            "Tom doesn't have to do that",
-            "I wrote this letter in French",
-            "Tom eats apples"
-        ]
+#sentences = ["What did you decide?",
+#            "It's raining outside",
+#            "Tom doesn't have to do that",
+#            "I wrote this letter in French",
+#            "Tom eats apples"
+#        ]
+
+with open("text", "r") as file:
+    sentences = file.read().splitlines()
 
 if __name__ == "__main__":
     for seq in sentences:
