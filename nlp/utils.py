@@ -64,4 +64,4 @@ def get_sequences(sentences, batch_size):
         for i, input_text in enumerate(sentences[j:j+batch_size]):
             for t, word in enumerate(input_text.split()):
                 encoded_data[i, t] = to_categorical(input_token_index[word], num_classes=len(input_token_index)+1)
-    return encoded_data
+    return sentences, encoded_data
