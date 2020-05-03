@@ -5,6 +5,9 @@ models/english_to_spanish_nmt.h5
 models/english_to_spanish_nmt.h5
 models/english_to_spanish_attention_nmt.zip
 
+# others
+*.swp
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -48,14 +48,11 @@ def get_sequences_generator(sentences, batch_size):
     max_length = get_longest_seq(sentences)
 
     for j in range(0, len(sentences), batch_size):
-        encoded_data = np.zeros(
-            (batch_size, max_length, len(input_token_index)+1), dtype='float32')
+        encoded_data = np.zeros((batch_size, max_length), dtype='float32')
         for i, input_text in enumerate(sentences[j:j+batch_size]):
-            print(input_text)
             for t, word in enumerate(input_text.split()):
-                encoded_data[i, t] = to_categorical(
-                    input_token_index[word], num_classes=len(input_token_index)+1)
-    yield encoded_data
+                encoded_data[i, t] = input_token_index[word]
+    return encoded_data
 
 
 def get_sequences(sentences, batch_size):
