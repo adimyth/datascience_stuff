@@ -1,7 +1,8 @@
-from PIL import Image
-import pytesseract
 import argparse
+
 import cv2
+import pytesseract
+from PIL import Image
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -13,8 +14,7 @@ image = cv2.imread(args["image"])
 
 # Apply an "average" blur to the image
 
-blurred = cv2.blur(image, (3,3))
+blurred = cv2.blur(image, (3, 3))
 img = Image.fromarray(blurred)
 text = pytesseract.image_to_string(img, lang='eng')
-print (text)
-
+print(text)

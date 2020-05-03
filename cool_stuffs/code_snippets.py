@@ -15,16 +15,17 @@ def add_datepart(df, fldnames, drop=True, time=False, errors="raise"):
             fld_dtype = np.datetime64
 
         if not np.issubdtype(fld.dtype, np.datetime64):
-            df[fldname] = fld = pd.to_datetime(fld, infer_datetime_format=True, errors=errors)
+            df[fldname] = fld = pd.to_datetime(
+                fld, infer_datetime_format=True, errors=errors)
         targ_pre = re.sub('[Dd]ate$', '', fldname)
         attr = ['Year', 'Month', 'Week', 'Day', 'Dayofweek', 'Dayofyear',
                 'Is_month_end', 'Is_month_start', 'Is_quarter_end', 'Is_quarter_start', 'Is_year_end', 'Is_year_start']
-        if time: 
+        if time:
             attr = attr + ['Hour', 'Minute', 'Second']
-        for n in attr: 
+        for n in attr:
             df[targ_pre + n] = getattr(fld.dt, n.lower())
         df[targ_pre + 'Elapsed'] = fld.astype(np.int64) // 10 ** 9
-        if drop: 
+        if drop:
             df.drop(fldname, axis=1, inplace=True)
     return df
 
@@ -108,9 +109,9 @@ def fill_missing_cont(data, continous_list, add_nan_col=False, strategy='mean'):
     for col in continous_list:
         if add_nan_col:
             data[col+'_na'] = pd.isnull(data[col])
-        if strategy=='mean'
-            filler = data[col].mean()
-        elif strategy=='median':
+        if strategy == 'mean'
+        filler = data[col].mean()
+        elif strategy == 'median':
             filler = data[col].median()
         else:
             filler = np.nan

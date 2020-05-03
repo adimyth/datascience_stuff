@@ -1,11 +1,13 @@
 import multiprocessing as mp
-import pandas as pd
 import urllib.request
+
+import pandas as pd
 
 
 '''
 Given a dataframe of urls & local path storage, downloads the images parallely
 '''
+
 
 def download_images_parallely(data, urls_col, paths_col):
     pool = mp.Pool(processes=mp.cpu_count())

@@ -1,9 +1,10 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.ensemble.partial_dependence import partial_dependence, plot_partial_dependence
+from sklearn.ensemble.partial_dependence import (partial_dependence,
+                                                 plot_partial_dependence)
 from sklearn.preprocessing import Imputer
-import matplotlib.pyplot as plt
 
 cols_to_use = ['Distance', 'Landsize', 'BuildingArea']
 data = pd.read_csv('data/melb_house_pricing.csv')
@@ -23,10 +24,13 @@ my_model = GradientBoostingRegressor()
 my_model.fit(imputed_X, y)
 
 # Here we make the plot
-my_plots = plot_partial_dependence(my_model,       
-                                   features=[0, 2], # column numbers of plots we want to show
-                                   X=imputed_X,            # raw predictors data.
-                                   feature_names=['Distance', 'Landsize', 'BuildingArea'], # labels on graphs
-                                   grid_resolution=10) # number of values to plot on x axis
+my_plots = plot_partial_dependence(my_model,
+                                   # column numbers of plots we want to show
+                                   features=[0, 2],
+                                   # raw predictors data.
+                                   X=imputed_X,
+                                   # labels on graphs
+                                   feature_names=['Distance',
+                                                  'Landsize', 'BuildingArea'],
+                                   grid_resolution=10)  # number of values to plot on x axis
 plt.show()
-

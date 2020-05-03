@@ -1,8 +1,8 @@
+import requests
+from sanic import Sanic, response
+
 from app import decode_sequence
 from configs import config
-import requests
-from sanic import Sanic
-from sanic import response
 from tensorflow.keras.models import load_model
 
 app = Sanic(__name__)
@@ -24,10 +24,10 @@ async def translate_seq(request):
     print(f"Actual Spanish Sentence: {act_spa_seq}")
     spa_to_eng = get_english_translation(spanish_seq[:-4])
     print(f"Predicted Spanish to English Sentence: {spa_to_eng}")
-    return response.json({"english_seq": english_seq, 
-        "spanish_seq": spanish_seq, 
-        "act_spa_seq": act_spa_seq, 
-        "spa_to_eng": spa_to_eng})
+    return response.json({"english_seq": english_seq,
+                          "spanish_seq": spanish_seq,
+                          "act_spa_seq": act_spa_seq,
+                          "spa_to_eng": spa_to_eng})
 
 
 def get_english_translation(seq):
@@ -44,4 +44,3 @@ def get_spanish_translation(seq):
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000)
-
