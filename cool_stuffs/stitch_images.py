@@ -1,7 +1,8 @@
 import sys
-from PIL import Image
 from glob import glob
 from pathlib import Path
+
+from PIL import Image
 
 
 def stitch_images_horizontally(inp_files, out_file, spacing=20):
@@ -41,4 +42,3 @@ if __name__ == "__main__":
     inp_files = [base_path/"gelu.png", base_path/"gelu-1.png"]
     out_file = base_path/"gelu.png"
     stitch_images_horizontally(inp_files, out_file, 30)
-

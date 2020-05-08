@@ -1,8 +1,8 @@
 import requests
-from sanic import Sanic, response
 
 from app import decode_sequence
 from configs import config
+from sanic import Sanic, response
 from tensorflow.keras.models import load_model
 
 app = Sanic(__name__)

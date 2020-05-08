@@ -1,14 +1,13 @@
 from __future__ import print_function
 
+import lime
 import numpy as np
 import sklearn
+from lime.lime_text import LimeTextExplainer
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.metrics import f1_score
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
-
-import lime
-from lime.lime_text import LimeTextExplainer
 
 newsgroups_train = fetch_20newsgroups(
     subset='train', remove=('headers', 'footers', 'quotes'))

@@ -1,12 +1,13 @@
 import os
 
+from tqdm import tqdm
+
 import tensorflow as tf
 from tensorflow.keras.datasets.mnist import load_data
 from tensorflow.keras.layers import Conv2D, Dense, Flatten
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
 from tensorflow.keras.metrics import Mean, SparseCategoricalAccuracy
 from tensorflow.keras.models import Model
-from tqdm import tqdm
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
