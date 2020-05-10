@@ -1,3 +1,5 @@
+from scipy.misc import derivative
+
 class DualNumber:
     def __init__(self, real, dual):
         self.real = real
@@ -51,7 +53,8 @@ def auto_diff(f, x):
 
 
 if __name__ == "__main__":
-    f = lambda y: 1./y**5
     y = 0.01
-    print(auto_diff(f,y)) 
+    f = lambda y: 1./y**5
+    print("Using Automatic Differentiation: ", auto_diff(f, y)) 
+    print("Using Scipy: ", derivative(f, x0=y, n=1, dx=1e-6))
 
