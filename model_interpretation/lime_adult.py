@@ -14,7 +14,7 @@ np.random.seed(1)
 warnings.filterwarnings('ignore')
 
 
-data = np.genfromtxt('data/adult.data', delimiter=', ', dtype=str)
+data = np.genfromtxt('../data/adult.data', delimiter=', ', dtype=str)
 feature_names = ["Age", "Workclass", "fnlwgt", "Education", "Education-Num", "Marital Status",
                  "Occupation", "Relationship", "Race", "Sex", "Capital Gain", "Capital Loss", "Hours per week", "Country"]
 
@@ -37,8 +37,7 @@ data = data.astype(float)
 train, test, labels_train, labels_test = sklearn.model_selection.train_test_split(
     data, labels, train_size=0.80)
 
-encoder = sklearn.preprocessing.OneHotEncoder(
-    categorical_features=categorical_features)
+encoder = sklearn.preprocessing.OneHotEncoder(categorical_features=categorical_features)
 encoder.fit(data)
 encoded_train = encoder.transform(train)
 
