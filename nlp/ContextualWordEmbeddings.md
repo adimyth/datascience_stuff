@@ -7,7 +7,9 @@ For example, the word *plane* has different meaning in each of the following sen
 2. The plane surface is a must for any cricket pitch.
 3. Plane geometry is fun to study.
 
-Hence, there's a need for contextualized word embeddings. 
+Hence, there's a need for contextualized word embeddings.
+
+At the core of the recent advances in NLP lies the paradigm shift: going from initializing just the first layer of our model to pretraining the entire model with hierarchical representations. If learning word vectors is like only learning edges, these approaches are like learning the full hierarchy of features, from edges to shapes to high-level semantic concepts.
 
 ## Solution
 Running a RNN over the word embeddings provides a hidden vector for each word. These hidden representations essentially give ***"context-specific representation of words"***. Essentially when we are running any language model, we generate context dependent representations. 
@@ -42,8 +44,25 @@ If we train the LM on large amount of unsupervised data then we will be able to 
 ## BERT
 Bidirectional Encoder Representations from Transformers
 
+### Advantages
+The output of BERT training is the trained model and vectors - not just vectors. The trained model is used
+* as is for generating word or sentence vectors (which are not only of the same quality as the older models like word2vec/Glove, but combine some of their useful characteristics - e.g. OOV/misspell handling)
+* or analogous to reusing CNN models trained on images for downstream tasks like object detection, reusing the trained language model with the addition of a layer or two, for downstream supervised tasks like NER. This reduces the need for large amounts of labeled data for the specific supervised task.
+* trained BERT model can be used for a wide variety of tasks with just very little additional architectural add-on and fine-tuned for specific tasks such as NER, Q&A etc. This eliminates the need for task specific architectures that we needed before.
+
 ## How Contextual are Contextualized Word Representations?
 1. In all layers of BERT, ELMo, and GPT-2, the representations of all words are anisotropic: they occupy a narrow cone in the embedding space instead of being distributed throughout.
 2. The models contextualize words very differently from one another.
 3. If a word’s contextualized representations were not at all contextual, we’d expect 100% of their variance to be explained by a static embedding. Instead, on average - less than 5% of the variance can be explained by a static embedding.
+
+
+## General Difference
+Word2Vec and Glove vectors can be used directly for downstream tasks. All we need is the vectors for the words. There is no need for the model itself that was used to train these vectors.
+
+ELMo & BERT are context dependent, hence we need the model that was used during training even for inference. We can just use the context independent vectors for a word if we choose too, but that would defeat the purpose of these models.
+
+* Glove & Word2Vec - Word based
+* ELMo - Character based
+* BERT - Subword based 
+
 
