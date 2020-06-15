@@ -9,7 +9,7 @@ def stitch_images_horizontally(inp_files, out_file, spacing=20):
     images = [Image.open(x) for x in inp_files]
     widths, heights = zip(*(i.size for i in images))
 
-    total_width = sum(widths)+spacing*len(inp_files)
+    total_width = sum(widths)+spacing*(len(inp_files)-1)
     max_height = min(heights)
 
     new_im = Image.new('RGB', (total_width, max_height))
@@ -25,7 +25,7 @@ def stitch_images_vertically(inp_files, out_file, spacing=20):
     images = [Image.open(x) for x in inp_files]
     widths, heights = zip(*(i.size for i in images))
 
-    total_height = sum(heights)+spacing*len(inp_files)
+    total_height = sum(heights)+spacing*(len(inp_files)-1)
     max_width = min(widths)
 
     new_im = Image.new('RGB', (max_width, total_height))
