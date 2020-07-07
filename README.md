@@ -1,5 +1,5 @@
 # Data Science Stuff
-Data Science stuff that I find interesting are here.
+Data Science stuff that I find interesting are here. Please :star: the repo, if you find it interesting.
 
 ## Machine Learning
 * [BatchNorm](https://github.com/adimyth/datascience_stuff/blob/master/machine-learning/BatchNorm.ipynb)
@@ -20,6 +20,7 @@ Data Science stuff that I find interesting are here.
 * [Seq2Seq](https://github.com/adimyth/datascience_stuff/blob/master/nlp/Seq2Seq.ipynb) - Notebook for a word based Encoder-Decoder Seq2Seq network for English to Spanish translation
 * [Attention](https://github.com/adimyth/datascience_stuff/blob/master/nlp/LanguageModelling.ipynb) - An extension of previous Seq2Seq work which uses `attention` mechanism for english to spanish translation
 * [Transformers](https://github.com/adimyth/datascience_stuff/blob/master/nlp/Transformers.ipynb) - Implements individual components of a transformer from scratch
+* [BertTextClassification](https://github.com/adimyth/datascience_stuff/blob/master/nlp/BertTextClassification.ipynb) - Using BERT for fake news classification. Dataset was obtained from Kaggle [here](https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset)
 
 ## Optimization
 [Differential Evolution](https://github.com/adimyth/datascience_stuff/blob/master/optimization/DifferentialEvolution.ipynb)
@@ -32,8 +33,19 @@ Will add more methods as I study them
 * [code_snipets](https://github.com/adimyth/datascience_stuff/blob/master/cool_stuffs/code_snippets.py) - Utility Script
 
 ## Translate App
-A simple sanic app which translates english sentence to spanish. It uses an attention based Seq2Seq model. Try and run this app on your local machine - 
-### How to run
+A simple app which translates english sentence to spanish. It uses an attention based Seq2Seq model. Try and run this app on your local machine - 
+
+### Streamlit App
+[Streamlit](https://streamlit.io) is an open source framework that let's users create web apps very easily.
+1. Install streamlit
+2. Clone the repo & navigate to *translate_app*directory
+3. Run the app
+```bash
+streamlit run streamlit_app.py
+```
+4. Go to localhost:8051
+
+### Sanic App
 1. Install tensorflow 2.0 and sanic
 2. Clone the git repo
 3. Navigate to *translate_app* directory
