@@ -7,11 +7,6 @@ from tensorflow.keras.models import load_model
 
 app = Sanic(__name__)
 url = config["url"]
-print("Loading trained models....")
-model = load_model(config["model_path"])
-encoder = load_model(config["encoder_path"])
-decoder = load_model(config["decoder_path"])
-
 
 @app.route("/translate", methods=["POST"])
 async def translate_seq(request):
@@ -43,4 +38,9 @@ def get_spanish_translation(seq):
 
 
 if __name__ == "__main__":
+    print("Loading trained models....")
+    model = load_model(config["model_path"])
+    encoder = load_model(config["encoder_path"])
+    decoder = load_model(config["decoder_path"])
     app.run(host="localhost", port=5000)
+

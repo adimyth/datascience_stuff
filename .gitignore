@@ -6,6 +6,7 @@ models/english_to_spanish_nmt.h5
 models/english_to_spanish_attention_nmt.zip
 
 # others
+.DS_Store/
 *.swp
 .ipynb_checkpoints
 

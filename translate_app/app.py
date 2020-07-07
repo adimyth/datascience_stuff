@@ -1,3 +1,4 @@
+import math
 import pickle
 import re
 import string
@@ -39,7 +40,7 @@ def get_input_seq(input_seq):
     return encoder_input_data
 
 
-def decode_sequence(model, encoder_model, decoder_model, input_seq):
+def decode_sequence(encoder_model, decoder_model, input_seq):
     input_seq = get_input_seq(input_seq)
     states_value = encoder_model.predict(input_seq)
     target_seq = np.zeros((1, 1))
@@ -71,3 +72,81 @@ def decode_sequence(model, encoder_model, decoder_model, input_seq):
         states_value = [h, c]
 
     return decoded_sentence
+
+
+def beam_search_decoder(predictions, top_k):
+    #start with an empty sequence with zero score
+    output_sequences = [([], 0)]
+
+    #looping through all the predictions
+    for token_probs in predictions:
+        new_sequences = []
+
+        #append new tokens to old sequences and re-score
+        for old_seq, old_score in output_sequences:
+            for char_index in range(len(token_probs)):
+                new_seq = old_seq + [char_index]
+                #considering log-likelihood for scoring
+                new_score = old_score + math.log(token_probs[char_index])
+                new_sequences.append((new_seq, new_score))
+
+        # sort all new sequences in the de-creasing order of their score
+        output_sequences = sorted(new_sequences, key = lambda val: val[1], reverse = True)
+
+        #select top-k based on score
+        # *Note- best sequence is with the highest score
+        output_sequences = output_sequences[:top_k]
+
+    return output_sequences
+
+
+def decode_sequence_beam_search(encoder_model, decoder_model, input_seq, beam_width=3):
+    probabilities = []
+    # Encode the input as state vectors.
+    input_seq = get_input_seq(input_seq)
+    states_value = encoder_model.predict(input_seq)
+    # Generate empty target sequence of length 1.
+    target_seq = np.zeros((1,1))
+    # Populate the first character of target sequence with the start character.
+    target_seq[0, 0] = target_token_index['START_']
+
+    # Sampling loop for a batch of sequences
+    # (to simplify, here we assume a batch of size 1).
+    stop_condition = False
+    decoded_sentence = ''
+    while not stop_condition:
+        output_tokens, h, c = decoder_model.predict([target_seq] + states_value)
+
+        # Sampling a token with max probability
+        sampled_token_index = np.argmax(output_tokens[0, -1, :])
+        probabilities.append(output_tokens[0, -1, :])
+         
+        sampled_char = reverse_target_char_index[sampled_token_index]
+        decoded_sentence += ' '+sampled_char
+
+        # Exit condition: either hit max length
+        # or find stop character.
+        if (sampled_char == '_END' or
+           len(decoded_sentence) > max_length_tar):
+            stop_condition = True
+
+        # Update the target sequence (of length 1).
+        target_seq = np.zeros((1,1))
+        target_seq[0, 0] = sampled_token_index
+
+        # Update states
+        states_value = [h, c]
+
+    # storing multiple results
+    outputs = []
+    beam_search_preds = beam_search_decoder(probabilities, top_k=beam_width)
+    for prob_indexes, score in beam_search_preds:
+        decoded_sentence = ''
+        for index in prob_indexes:
+            sampled_char = reverse_target_char_index[index]
+            decoded_sentence += ' '+sampled_char
+            if (sampled_char == '_END' or len(decoded_sentence) > max_length_tar):
+                break
+        outputs.append(decoded_sentence)
+    return outputs
+
