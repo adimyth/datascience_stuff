@@ -9,5 +9,5 @@ config = {
     "url": "https://api.mymemory.translated.net/get",
     # constants
     "max_length_src": 47,
-    "max_length_tar": 47
+    "max_length_tar": 47,
 }
