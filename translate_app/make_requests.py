@@ -1,14 +1,6 @@
 import requests
 
-url = "http://localhost:5000/translate"
-
-# sentences = ["What did you decide?",
-#            "It's raining outside",
-#            "Tom doesn't have to do that",
-#            "I wrote this letter in French",
-#            "Tom eats apples"
-#        ]
-
+url = "http://127.0.0.1:5000/translate"
 with open("text", "r") as file:
     sentences = file.read().splitlines()
 

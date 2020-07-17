@@ -1,3 +1,4 @@
+import functools
 import math
 import pickle
 import re
@@ -5,6 +6,7 @@ import string
 
 import numpy as np
 import requests
+from tensorflow.keras.models import load_model
 
 from configs import config
 
@@ -12,7 +14,7 @@ from configs import config
 max_length_src = config["max_length_src"]
 max_length_tar = config["max_length_tar"]
 
-print("Loading word indexes ....")
+print("Loading Word Indexes ....")
 with open(config["input_word_index"], "rb") as file:
     input_token_index = pickle.load(file)
 with open(config["target_word_index"], "rb") as file:
@@ -21,6 +23,9 @@ reverse_input_char_index = dict((i, word)
                                 for word, i in input_token_index.items())
 reverse_target_char_index = dict((i, word)
                                  for word, i in target_token_index.items())
+print("Loading Encoder & Decoder ....")
+encoder_model = load_model(config["encoder_path"])
+decoder_model = load_model(config["decoder_path"])
 
 
 def clean(input_seq):
@@ -40,7 +45,8 @@ def get_input_seq(input_seq):
     return encoder_input_data
 
 
-def decode_sequence(encoder_model, decoder_model, input_seq):
+@functools.lru_cache(maxsize=128)
+def decode_sequence(input_seq):
     input_seq = get_input_seq(input_seq)
     states_value = encoder_model.predict(input_seq)
     target_seq = np.zeros((1, 1))
@@ -100,7 +106,8 @@ def beam_search_decoder(predictions, top_k):
     return output_sequences
 
 
-def decode_sequence_beam_search(encoder_model, decoder_model, input_seq, beam_width=3):
+@functools.lru_cache(maxsize=128)
+def decode_sequence_beam_search(input_seq, beam_width=3):
     probabilities = []
     # Encode the input as state vectors.
     input_seq = get_input_seq(input_seq)
@@ -149,4 +156,3 @@ def decode_sequence_beam_search(encoder_model, decoder_model, input_seq, beam_wi
                 break
         outputs.append(decoded_sentence)
     return outputs
-
