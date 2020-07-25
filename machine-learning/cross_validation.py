@@ -55,6 +55,7 @@ class CrossValidation:
             for fold, (train_idx, val_idx) in enumerate(kf.split(X=self.dataframe)):
                 self.dataframe.loc[val_idx, "kfold"] = fold
 
+        # Similar - https://www.kaggle.com/youhanlee/stratified-sampling-for-regression-lb-1-4627#Target,-prediction-process
         elif self.problem_type=="single_col_regression" and self.stratified_regression:
             if self.num_targets != 1 and self.problem_type == "single_col_regression":
                 raise Exception("Invalid number of targets for this problem type")
@@ -65,6 +66,7 @@ class CrossValidation:
             y_categorized = pd.cut(
                 y,
                 bins=range(y_min, y_max, 3),
+                #bins=range(y_min, y_max, self.stratified_regression_bins),
                 include_lowest=True,
                 right=False,
                 labels=range(y_min, y_max, self.stratified_regression_bins),
@@ -125,4 +127,5 @@ if __name__ == "__main__":
         ax3.set_title("Fold 2")
         sns.distplot(df_split[df_split["kfold"]==3]["SalePrice"], ax=ax4)
         ax4.set_title("Fold 3")
+        plt.tight_layout()
         plt.show()
