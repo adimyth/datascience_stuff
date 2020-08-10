@@ -1,8 +1,8 @@
+import pandas as pd
 import multiprocessing as mp
 import urllib.request
-
-import pandas as pd
-
+import rich.traceback
+rich.traceback.install()
 
 '''
 Given a dataframe of urls & local path storage, downloads the images parallely

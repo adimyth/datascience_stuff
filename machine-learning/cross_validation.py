@@ -2,6 +2,9 @@
 # single_col_regression stratified split - https://github.com/abhishekkrthakur/mlframework/pull/9/files
 import pandas as pd
 from sklearn import model_selection
+from rich import print
+import rich.traceback
+rich.traceback.install()
 
 
 class CrossValidation:
@@ -114,8 +117,8 @@ if __name__ == "__main__":
     print(f"\nSize: {df_split.shape}")
     print("\nData Distribution by Fold")
     print(df_split.kfold.value_counts())
-    print("\nTarget Distribution by Fold")
     if "_classification" in problem_type:
+        print("\nTarget Distribution by Fold")
         print(df_split.groupby(by="kfold")["SalePrice"].value_counts())
     elif "_regression" in problem_type:
         fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2)
@@ -128,4 +131,5 @@ if __name__ == "__main__":
         sns.distplot(df_split[df_split["kfold"]==3]["SalePrice"], ax=ax4)
         ax4.set_title("Fold 3")
         plt.tight_layout()
+        fig.suptitle("Target Distribution by Fold")
         plt.show()

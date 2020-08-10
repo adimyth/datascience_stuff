@@ -1,6 +1,5 @@
 import requests
 import functools
-
 from app import decode_sequence
 from configs import config
 from sanic import Sanic, response
@@ -8,8 +7,6 @@ from sanic import Sanic, response
 app = Sanic(__name__)
 url = config["url"]
 
-
-@functools.lru_cache(maxsize=128)
 @app.route("/translate", methods=["POST"])
 async def translate_seq(request):
     data = request.json

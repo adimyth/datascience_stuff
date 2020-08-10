@@ -4,6 +4,7 @@ import lime
 import numpy as np
 import sklearn
 from lime.lime_text import LimeTextExplainer
+from rich import print
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.metrics import f1_score
 from sklearn.naive_bayes import MultinomialNB

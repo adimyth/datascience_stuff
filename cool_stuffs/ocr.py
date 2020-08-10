@@ -1,5 +1,5 @@
 import argparse
-
+from rich import print
 import cv2
 import pytesseract
 from PIL import Image

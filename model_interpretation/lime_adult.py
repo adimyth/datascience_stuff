@@ -4,6 +4,8 @@ import warnings
 
 import matplotlib.pyplot as plt
 import numpy as np
+from rich import print
+import rich.traceback
 import sklearn
 import sklearn.datasets
 import sklearn.ensemble
@@ -12,7 +14,7 @@ from lime.lime_tabular import LimeTabularExplainer
 
 np.random.seed(1)
 warnings.filterwarnings('ignore')
-
+rich.traceback.install()
 
 data = np.genfromtxt('../data/adult.data', delimiter=', ', dtype=str)
 feature_names = ["Age", "Workclass", "fnlwgt", "Education", "Education-Num", "Marital Status",

@@ -1,6 +1,6 @@
 from app import decode_sequence, decode_sequence_beam_search
 from configs import config
-from server import get_english_translation, get_spanish_translation
+from server import get_english_translation, get_spanish_translation 
 import streamlit as st
 
 # title

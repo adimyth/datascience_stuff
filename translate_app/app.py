@@ -3,7 +3,6 @@ import math
 import pickle
 import re
 import string
-
 import numpy as np
 import requests
 from tensorflow.keras.models import load_model
@@ -14,14 +13,14 @@ from configs import config
 max_length_src = config["max_length_src"]
 max_length_tar = config["max_length_tar"]
 
-print("Loading Word Indexes ....")
+print("[INFO] Loading Word Indexes ...")
 with open(config["input_word_index"], "rb") as file:
     input_token_index = pickle.load(file)
 with open(config["target_word_index"], "rb") as file:
     target_token_index = pickle.load(file)
 reverse_input_char_index = dict((i, word) for word, i in input_token_index.items())
 reverse_target_char_index = dict((i, word) for word, i in target_token_index.items())
-print("Loading Encoder & Decoder ....")
+print("[INFO] Loading Encoder & Decoder ...")
 encoder_model = load_model(config["encoder_path"])
 decoder_model = load_model(config["decoder_path"])
 

@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from rich import print
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.ensemble.partial_dependence import (partial_dependence,
                                                  plot_partial_dependence)
